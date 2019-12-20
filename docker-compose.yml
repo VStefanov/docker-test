@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: MyTestApp/Dockerfile.dev
+    ports:
+      - "8787:80"
+      - "443:443"
