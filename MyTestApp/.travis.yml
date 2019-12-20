@@ -1,9 +1,15 @@
-language:csharp
+language: csharp
+sudo: required
+dist: trusty
+mono: none
+dotnet: 3.0
 services:
-    - docker
+   - docker
+os:
+   - linux
 
 before_install:
     - docker build -t alphata/docker-test -f Dockerfile.dev .
 
  script:
-    -docker run alphata/docker-test echo korami
+    - docker run alphata/docker-test echo korami
