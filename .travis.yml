@@ -7,10 +7,16 @@ before_install:
  - docker build -t alphata/web -f MyTestApp/Dockerfile.dev .
 
 script:
-- docker run alphata/web echo korami
+- echo "Done"
 
 after_success:
- - docker build -t alphata/api MyTestApp
+ - docker build -t alphata/web MyTestApp
  - docker build -t alphata/api MyTestApp.Api
- - docker build -t alphata/api MyTestApp.Worker
+ - docker build -t alphata/worker MyTestApp.Worker
  - docker build -t alphata/nginx nginx
+
+ - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_ID" --password-stdin
+ - docker push alphata/web
+ - docker push alphata/api
+ - docker push alphata/worker
+ - docker push alphata/nginx
