@@ -5,7 +5,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
 WORKDIR /src
 COPY ["MyTestApp.Worker.csproj", "MyTestApp.Worker/"]
 RUN dotnet restore "MyTestApp.Worker/MyTestApp.Worker.csproj"
-COPY . .
+COPY ../MyTestApp.Worker/. .
 WORKDIR "/src/MyTestApp.Worker"
 RUN dotnet build "MyTestApp.Worker.csproj" -c Release -o /app/build
 

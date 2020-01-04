@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
 WORKDIR /src
 COPY ["MyTestApp.csproj", "MyTestApp/"]
 RUN dotnet restore "MyTestApp/MyTestApp.csproj"
-COPY . .
+COPY ../MyTestApp/. .
 WORKDIR "/src/MyTestApp"
 RUN dotnet publish "MyTestApp.csproj" -c Release -o /app/publish
 
