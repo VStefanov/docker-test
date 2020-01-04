@@ -1,7 +1,57 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model Web.MyTestApp.Models.IndexViewModel
+@{
+    ViewData["Title"] = "Home Page";    
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to the Jungle</h1>
-</div>
+    <div class="text-center">
+        <div>
+            <h3 class="display-4">Welcome to the Jungle</h3>
+            <form asp-controller="Home" asp-action="Index" method="post">
+                <label>Please enter a number:</label>
+                <input asp-for="Index" />
+                <input type="submit" />
+            </form>
+        </div>
+        <br />
+        <div>
+            <form asp-controller="Home" asp-action="Refresh" method="get">
+                <input type="submit" value="Refresh" />
+            </form>
+        </div>
+        <br />
+        @if (Model != null)
+        {
+        <div>
+            <h3>Available Indexes</h3>
+            <div>
+                 @if (Model.AvailableIndexes != null)
+                 {
+                     @foreach (string item in Model.AvailableIndexes)
+                     {
+                         @item
+                         <br/>
+                     }
+                 }
+            </div>
+        </div>
+        <br />
+        <div>
+            <h3>Indexes Values</h3>
+            <div>
+                @if (Model.AvailableIndexesValues != null)
+                {
+                    @foreach (KeyValuePair<string,string> item in Model.AvailableIndexesValues)
+                    {
+                        <p>@item.Key has value @item.Value</p>
+                    }
+                }
+            </div>
+        </div>
+        }
+        else
+        {
+            <div>
+                <h5>No calculated indexes!</h5>
+            </div>
+        }
+    </div>

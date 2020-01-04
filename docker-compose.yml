@@ -1,9 +1,38 @@
 version: '3'
 services:
+  postgres:
+    image: 'postgres:latest'
+  redis:
+    image: 'redis:latest'
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - '3050:80'
+  api:
+    depends_on: 
+      - postgres
+    build:
+      dockerfile: MyTestApp.Api/Dockerfile.dev
+      context: .
+    environment: 
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DATABASE=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres_password
   web:
     build:
-      context: .
       dockerfile: MyTestApp/Dockerfile.dev
-    ports:
-      - "8787:80"
-      - "443:443"
+      context: .
+  worker:
+    build:
+      dockerfile: MyTestApp.Worker/Dockerfile.dev
+      context: .
+    environment: 
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379

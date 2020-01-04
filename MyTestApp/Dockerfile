@@ -8,5 +8,5 @@ RUN dotnet publish "MyTestApp.csproj" -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "MyTestApp.dll"]

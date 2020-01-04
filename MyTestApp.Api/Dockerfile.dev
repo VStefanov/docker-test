@@ -1,0 +1,19 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-buster-slim AS base
+WORKDIR /app
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
+WORKDIR /src
+COPY ["MyTestApp.Api/MyTestApp.Api.csproj", "MyTestApp.Api/"]
+RUN dotnet restore "MyTestApp.Api/MyTestApp.Api.csproj"
+COPY . .
+WORKDIR "/src/MyTestApp.Api"
+RUN dotnet build "MyTestApp.Api.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "MyTestApp.Api.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENV ASPNETCORE_URLS http://*:7000
+ENTRYPOINT ["dotnet", "MyTestApp.Api.dll"]

@@ -1,6 +1,6 @@
 using System;
 
-namespace MyTestApp.Models
+namespace Web.MyTestApp.Models
 {
     public class ErrorViewModel
     {
