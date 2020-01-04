@@ -4,16 +4,16 @@ services:
  - docker
 
 before_install:
- - docker build -t alphata/web -f MyTestApp/Dockerfile.dev .
+ - docker build -t alphata/web-dev -f MyTestApp/Dockerfile.dev .
 
 script:
 - echo "Done"
 
 after_success:
- - docker build -t alphata/web ./MyTestApp
- - docker build -t alphata/api ./MyTestApp.Api
- - docker build -t alphata/worker ./MyTestApp.Worker
- - docker build -t alphata/nginx ./nginx
+ - docker build -t alphata/web -f MyTestApp/Dockerfile .
+ - docker build -t alphata/api -f MyTestApp.Api/Dockerfile .
+ - docker build -t alphata/worker -f MyTestApp.Worker/Dockerfile .
+ - docker build -t alphata/nginx -f nginx/Dockerfile .
 
  - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_ID" --password-stdin
  - docker push alphata/web
