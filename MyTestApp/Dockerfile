@@ -6,7 +6,8 @@ COPY . .
 WORKDIR "/src/MyTestApp"
 RUN dotnet publish "MyTestApp.csproj" -c Release -o /app/publish
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.0
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-buster-slim
 WORKDIR /app
 COPY --from=build /app/publish .
+ENV ASPNETCORE_URLS http://*:3000
 ENTRYPOINT ["dotnet", "MyTestApp.dll"]

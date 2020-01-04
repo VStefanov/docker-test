@@ -62,6 +62,7 @@ namespace Api.MyTestApp.Api
 
         private static void UpdateDatabase(IApplicationBuilder app)
         {
+            System.Threading.Thread.Sleep(5000);       
             using (var serviceScope = app.ApplicationServices
                 .GetRequiredService<IServiceScopeFactory>()
                 .CreateScope())

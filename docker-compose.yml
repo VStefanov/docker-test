@@ -15,7 +15,7 @@ services:
     depends_on: 
       - postgres
     build:
-      dockerfile: MyTestApp.Api/Dockerfile.dev
+      dockerfile: MyTestApp.Api/Dockerfile
       context: .
     environment: 
       - REDIS_HOST=redis
@@ -27,11 +27,11 @@ services:
       - POSTGRES_PASSWORD=postgres_password
   web:
     build:
-      dockerfile: MyTestApp/Dockerfile.dev
+      dockerfile: MyTestApp/Dockerfile
       context: .
   worker:
     build:
-      dockerfile: MyTestApp.Worker/Dockerfile.dev
+      dockerfile: MyTestApp.Worker/Dockerfile
       context: .
     environment: 
       - REDIS_HOST=redis
