@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-deployment
+  name: api-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      component: web
+      component: api
   template:
     metadata:
       labels:
-        component: web
+        component: api
     spec:
       containers:
-      - name: web
-        image: alphata/web:latest
+      - name: api
+        image: alphata/api:latest
         ports:
-        - containerPort: 3000
+        - containerPort: 7000

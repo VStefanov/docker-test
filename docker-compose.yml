@@ -7,8 +7,8 @@ services:
   nginx:
     restart: always
     build:
-      dockerfile: Dockerfile.dev
-      context: ./nginx
+      dockerfile: nginx/Dockerfile.dev
+      context: .
     ports:
       - '3050:80'
   api:
