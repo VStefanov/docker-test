@@ -36,18 +36,9 @@ namespace Api.MyTestApp.Api.Controllers
 
         [HttpGet]
         [Route("Status")]
-        public List<string> Status()
+        public string Status()
         {
-            return new List<string>
-            {
-                "Redis Host:" + Environment.GetEnvironmentVariable("REDIS_HOST"),
-                "Redis Port:" + Environment.GetEnvironmentVariable("REDIS_PORT"),
-                "Postgres Host:" + Environment.GetEnvironmentVariable("POSTGRES_HOST"),
-                "Postgres Port:" + Environment.GetEnvironmentVariable("POSTGRES_PORT"),
-                "Postgres User:" + Environment.GetEnvironmentVariable("POSTGRES_USER"),
-                "Postgres Pass:" + Environment.GetEnvironmentVariable("POSTGRES_PASSWORD"),
-                "Postgres Database:" + Environment.GetEnvironmentVariable("POSTGRES_DATABASE")
-            };
+            return "Service available.";
         }
 
         [HttpGet]
