@@ -19,6 +19,10 @@ spec:
       containers:
       - name: postgres
         image: postgres:latest
+        resources:
+            limits:
+              cpu: 100m
+              memory: 256Mi
         ports:
           - containerPort: 5432
         volumeMounts:
@@ -26,7 +30,7 @@ spec:
             mountPath: /var/lib/postgresql/data
             subPath: postgres
         env:
-          - name: PGPASSOWRD
+          - name: POSTGRES_PASSWORD
             valueFrom:
                 secretKeyRef:
                   name: pgpassword

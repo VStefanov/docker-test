@@ -15,5 +15,9 @@ spec:
       containers:
       - name: web
         image: alphata/web:latest
+        resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
         ports:
         - containerPort: 3000
