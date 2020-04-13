@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('Test'){
             steps {
-                sh 'sleep 30'
+                sh 'ls -ltr /home/jenkins/workspace/Fostata'
             }
         }
     }
