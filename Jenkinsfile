@@ -1,9 +1,11 @@
 pipeline {
     agent any
     stages{
-        stage('Test'){
+        stage('Build'){
             steps {
-                sh 'ls -ltr /home/jenkins/workspace/Fostata'
+                sh '''
+                    echo $WORKSPACE
+                '''
             }
         }
     }
