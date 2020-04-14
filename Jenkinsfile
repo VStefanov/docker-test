@@ -1,20 +1,18 @@
-pipeline {
-    agent any
-    stages{
-        stage('Build'){
-            steps {
-                sh '''
-                   cd $WORKSPACE
-                   
-                   chmod -R a+rwx $WORKSPACE
-                   chmod a+rwx /var/run/docker.sock
-
-                   docker build -t alphata/web -f MyTestApp/Dockerfile .
-                   docker build -t alphata/api -f MyTestApp.Api/Dockerfile .
-                   docker build -t alphata/worker -f MyTestApp.Worker/Dockerfile .
-
-                   docker images
-                '''
+spodTemplate(label: 'mypod', containers: [
+    containerTemplate(name: 'git', image: 'alpine/git', ttyEnabled: true, command: 'cat'),
+    containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true)
+  ],
+  volumes: [
+    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
+  ]
+  ) {
+    node('mypod') {
+        stage('Check running containers') {
+            container('docker') {
+                // example to show you can run docker commands when you mount the socket
+                sh 'hostname'
+                sh 'hostname -i'
+                sh 'docker ps'
             }
         }
     }
