@@ -5,6 +5,8 @@ pipeline {
             steps {
                 sh '''
                    cd $WORKSPACE
+                   
+                   chmod -R a+rwx $WORKSPACE
 
                    docker build -t alphata/web -f MyTestApp/Dockerfile .
                    docker build -t alphata/api -f MyTestApp.Api/Dockerfile .
