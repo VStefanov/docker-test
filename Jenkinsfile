@@ -7,12 +7,13 @@ pipeline {
                    cd $WORKSPACE
                    
                    chmod -R a+rwx $WORKSPACE
+                   chmod 666 /var/run/docker.sock
 
-                   sudo docker build -t alphata/web -f MyTestApp/Dockerfile .
-                   sudo docker build -t alphata/api -f MyTestApp.Api/Dockerfile .
-                   sudo docker build -t alphata/worker -f MyTestApp.Worker/Dockerfile .
+                   docker build -t alphata/web -f MyTestApp/Dockerfile .
+                   docker build -t alphata/api -f MyTestApp.Api/Dockerfile .
+                   docker build -t alphata/worker -f MyTestApp.Worker/Dockerfile .
 
-                   sudo docker images
+                   docker images
                 '''
             }
         }
