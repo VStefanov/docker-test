@@ -8,11 +8,11 @@ pipeline {
                    
                    chmod -R a+rwx $WORKSPACE
 
-                   docker build -t alphata/web -f MyTestApp/Dockerfile .
-                   docker build -t alphata/api -f MyTestApp.Api/Dockerfile .
-                   docker build -t alphata/worker -f MyTestApp.Worker/Dockerfile .
+                   sudo docker build -t alphata/web -f MyTestApp/Dockerfile .
+                   sudo docker build -t alphata/api -f MyTestApp.Api/Dockerfile .
+                   sudo docker build -t alphata/worker -f MyTestApp.Worker/Dockerfile .
 
-                   docker images
+                   sudo docker images
                 '''
             }
         }
