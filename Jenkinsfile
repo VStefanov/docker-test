@@ -7,7 +7,7 @@ pipeline {
                    cd $WORKSPACE
                    
                    chmod -R a+rwx $WORKSPACE
-                   chmod 666 /var/run/docker.sock
+                   chmod a+rwx /var/run/docker.sock
 
                    docker build -t alphata/web -f MyTestApp/Dockerfile .
                    docker build -t alphata/api -f MyTestApp.Api/Dockerfile .
