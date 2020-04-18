@@ -8,8 +8,20 @@ podTemplate(label: 'mypod', containers: [
   ) {
     node('mypod') {
         stage('Clone repository') {
-            agent any {
-                checkout scm
+            container('git') {
+                sh 'whoami'
+                sh 'hostname -i'
+                sh 'git clone -b master https://github.com/VStefanov/docker-test.git'
+                sh 'ls -lta'
+            }
+        }
+
+        stage('Maven Build') {
+            container('docker') {
+                dir('docker-test/') {
+                    sh 'echo $WORKSPACE'
+                    sh 'echo ls -lta'
+                }
             }
         }
     }
