@@ -20,9 +20,15 @@ podTemplate(label: 'mypod', containers: [
             container('docker') {
                 dir('docker-test/') {
                     sh 'docker build -t alphata/web -f MyTestApp/Dockerfile .'
-                    sh '========================================================='
-                    sh '========================================================='
-                    sh 'docker images'
+                }
+            }
+        }
+
+        stage('Publish') {
+            container('docker') {
+                dir('docker-test/') {
+                    sh 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_ID}" --password-stdin'
+                    sh 'docker push alphata/web'
                 }
             }
         }
