@@ -16,11 +16,13 @@ podTemplate(label: 'mypod', containers: [
             }
         }
 
-        stage('Maven Build') {
+        stage('Build') {
             container('docker') {
                 dir('docker-test/') {
-                    sh 'echo $WORKSPACE'
-                    sh 'ls -lta'
+                    sh 'docker build -t alphata/web -f MyTestApp/Dockerfile .'
+                    sh '========================================================='
+                    sh '========================================================='
+                    sh 'docker images'
                 }
             }
         }
