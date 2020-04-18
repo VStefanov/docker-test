@@ -27,7 +27,7 @@ podTemplate(label: 'mypod', containers: [
         stage('Publish') {
             container('docker') {
                 dir('docker-test/') {
-                    sh 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_ID}" --password-stdin'
+                    sh "echo '${DOCKER_PASSWORD}'' | docker login -u '${DOCKER_ID}' --password-stdin"
                     sh 'docker push alphata/web'
                 }
             }
