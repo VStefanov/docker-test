@@ -20,7 +20,7 @@ podTemplate(label: 'mypod', containers: [
             container('docker') {
                 dir('docker-test/') {
                     sh 'echo $WORKSPACE'
-                    sh 'echo ls -lta'
+                    sh 'ls -lta'
                 }
             }
         }
