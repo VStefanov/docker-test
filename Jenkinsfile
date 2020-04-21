@@ -31,7 +31,7 @@ podTemplate(label: 'mypod', containers: [
                     sh 'docker push alphata/web'
                     sh 'docker push alphata/api'
                     sh 'docker push alphata/worker'
-                    sh 'docker alphata/nginx'
+                    sh 'docker push alphata/nginx'
                 }
             }
         }
