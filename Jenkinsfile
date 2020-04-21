@@ -18,6 +18,8 @@ podTemplate(label: 'mypod', containers: [
                 dir('docker-test/') {
                     sh 'docker build -t alphata/web -f MyTestApp/Dockerfile .'
                     sh 'docker build -t alphata/api -f MyTestApp.Api/Dockerfile .'
+                    sh 'docker build -t alphata/worker -f MyTestApp.Worker/Dockerfile .'
+                    sh 'docker build -t alphata/nginx -f nginx/Dockerfile .'
                 }
             }
         }
@@ -28,6 +30,8 @@ podTemplate(label: 'mypod', containers: [
                     sh "docker login -u '${DOCKER_ID}' -p '${DOCKER_PASSWORD}'"
                     sh 'docker push alphata/web'
                     sh 'docker push alphata/api'
+                    sh 'docker push alphata/worker'
+                    sh 'docker alphata/nginx'
                 }
             }
         }
