@@ -57,7 +57,7 @@ resource "aws_security_group" "cluster" {
 }
 
 
-resource "aws_s-ingress-workstation-ecurity_group_rule" "clusterhttps" {
+resource "aws_eks-ingress-workstation-security_group_rule" "clusterhttps" {
   cidr_blocks       = [""]
   description       = "Allow workstation to communicate with the cluster API Server"
   from_port         = 443
