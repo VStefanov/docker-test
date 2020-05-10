@@ -7,9 +7,9 @@ script:
 - echo "Done"
 
 after_success:
- - docker build -t alphata/web -f MyTestApp.Web/src/Dockerfile .
- - docker build -t alphata/api -f MyTestApp.Api/src/Dockerfile .
- - docker build -t alphata/worker -f MyTestApp.Worker/src/Dockerfile .
+ - docker build -t alphata/web -f MyTestApp.Web/Dockerfile .
+ - docker build -t alphata/api -f MyTestApp.Api/Dockerfile .
+ - docker build -t alphata/worker -f MyTestApp.Worker/Dockerfile .
  - docker build -t alphata/nginx -f nginx/Dockerfile .
 
  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
