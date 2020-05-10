@@ -5,7 +5,7 @@
 
     <div class="text-center">
         <div>
-            <h3 class="display-4">Welcome to Korami</h3>
+            <h3 class="display-4">Fibonacci Calculator</h3>
             <form asp-controller="Home" asp-action="Index" method="post">
                 <label>Please enter a number:</label>
                 <input asp-for="Index" />
@@ -22,7 +22,7 @@
         @if (Model != null)
         {
         <div>
-            <h3>Available Indexes</h3>
+            <h3>Indexes</h3>
             <div>
                  @if (Model.AvailableIndexes != null)
                  {
